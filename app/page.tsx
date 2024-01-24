@@ -40,7 +40,7 @@ function Page() {
     <main>
      <section><Navbar /></section>
       <div className='pt-11'>
-       <section className='flex-grow flex lg:justify-end sm:justify-start item-end pt-60 pr-6 sm:w-100px sm:h-20px' style={{backgroundImage:"url('/images/back.webp')", width:"screen"}}>
+       <section className='flex-grow flex lg:justify-end sm:justify-start item-end pt-60 pr-6 sm:w-100px sm:h-20px' style={{backgroundImage:"url('/images/back.webp')" , backgroundPosition:"center", backgroundSize:"cover"}}>
         <div >
        
           <button
@@ -87,3 +87,5 @@ function Page() {
 }
 
 export default Page;
+
+      
