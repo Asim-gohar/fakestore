@@ -1,5 +1,5 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+
+
 import axios from 'axios';
 import { DataType} from './compnents/Types/types';
 import { GiShoppingCart } from "react-icons/gi";
@@ -9,53 +9,37 @@ import Footer from './compnents/footer/footer';
 import Navbar from './compnents/navbar/navbar';
 import { Bars3Icon } from '@heroicons/react/16/solid';
 
-
-function Page() {
-  const [data, setData] = useState<DataType[]>([]);
-  const [update, setUpdate] = useState(false);
-  const [loader, setLoader] = useState(false);
-  useEffect(() =>{
-    getUser()
-  } , [update])
-
-  async function getUser() {
-    try {
-      setLoader(true)
-      const response = await axios.get('https://fakestoreapi.com/products');
-      setData(response.data);
-      useEffect(response.data)
-      console.log(response.data);
-    } catch (error) {
-      console.error('Check your internet connection');
-    }
-    finally {
-      setLoader(false)
-    }
-    }
-    const reFetch = () => {
-      setUpdate(true)
+const getProducts =async () => {
+  try {
+   
+    const response =await fetch('https://fakestoreapi.com/products');
+    const data = response.json()
+   
+    return data 
+  } catch (error) {
+    console.error('Check your internet connection');
   }
+}
+
+async function Page() {
+ 
+  const products = await getProducts()
 
   return (
+    <>
     <main>
      <section><Navbar /></section>
-      <div className='pt-11'>
+      <div className='py-11'>
        <section className='flex-grow flex lg:justify-end sm:justify-start item-end pt-60 pr-6 sm:w-100px sm:h-20px' style={{backgroundImage:"url('/images/back.webp')" , backgroundPosition:"center", backgroundSize:"cover"}}>
         <div >
        
-          <button
-            className='border-2 border-black bg-black text-white text-2xl hover:bg-a186b1 font-bold hover:text-black px-4 rounded-3xl' 
-            onClick={reFetch}
-          > 
-            Shop Now
-          </button>
         </div> 
         </section>  
-        <div className='text-center pt-8 text-2xl'>{loader && "loading..."}</div>
+        
  
         <div className='px-32'>
-          <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 pt-20 h-[365px]'>
-            {data.map((item, i) => {
+          <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 pt-20 '>
+            {products?.map((item : DataType , i : number) => {
               return (
                 <div key={i} className=' border-2 justify-between lg-w-[300px] lg-h-[365px]'>
 
@@ -83,6 +67,8 @@ function Page() {
         </div>
       </div>
     </main>
+      <Footer />
+     </>
   );
 }
 

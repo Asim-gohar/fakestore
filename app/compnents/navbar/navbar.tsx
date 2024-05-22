@@ -8,7 +8,7 @@ import { Bars3Icon } from '@heroicons/react/16/solid';
 function Navbar() {
     return (
         <main>
-            <section className='fixed top-0 left-0 bg-gradient-to-r from-6f6da0 to-e93a7e lg:h-12 lg:w-full md:w-full md:h-12 sm:w-full sm:h-8'>
+            <section className='fixed top-0 left-0 bg-gradient-to-r from-6f6da0 to-e93a7e lg:h-12 lg:w-full md:w-full md:h-12 sm:w-mobile sm:h-8'>
                 <div className='text-white flex lg:pt-3 lg:pl-40 sm:pt-3 sm:pl-10'>
                    
                     <Link href='https://www.facebook.com/profile.php?id=100036069652618&mibextid=ZbWKwL'><div className='border-r border-white h-6 mr-2 pr-3'><FaFacebookF className='text-m' /></div></Link>
